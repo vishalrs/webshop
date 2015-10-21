@@ -31,6 +31,7 @@
 		<spring-security.version>3.2.4.RELEASE</spring-security.version>
 		<!-- Hibernate / JPA -->
 		<hibernate.version>4.2.1.Final</hibernate.version>
+		<hibernate_validator.version>4.2.0.Final</hibernate_validator.version>
 		<!-- Logging -->
 		<slf4j.version>1.7.5</slf4j.version>
 		<!--Database-->
@@ -88,6 +89,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate_validator.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
