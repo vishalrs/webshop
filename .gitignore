@@ -2,3 +2,14 @@ webshop-project.*
 webshop-admin/target
 webshop-web/target
 webshop-core/target
+.project
+.settings/
+webshop-admin/.classpath
+webshop-admin/.project
+webshop-admin/.settings/
+webshop-core/.classpath
+webshop-core/.project
+webshop-core/.settings/
+webshop-web/.classpath
+webshop-web/.project
+webshop-web/.settings/

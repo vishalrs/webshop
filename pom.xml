@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sogeti</groupId>
 	<artifactId>webshop</artifactId>
@@ -34,14 +35,14 @@
 		<hibernate_validator.version>4.2.0.Final</hibernate_validator.version>
 		<!-- Logging -->
 		<slf4j.version>1.7.5</slf4j.version>
-		<!--Database-->
+		<!--Database -->
 		<mysql.version>5.1.36</mysql.version>
+		<c3p0.version>0.9.1.2</c3p0.version>
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<!--Runtime properties
-		<dbip></dbip><dbport></dbport><dbname></dbname><dbusername></dbusername><dbpassword></dbpassword>-->
+		<!--Runtime properties <dbip></dbip><dbport></dbport><dbname></dbname><dbusername></dbusername><dbpassword></dbpassword> -->
 	</properties>
 	<dependencies>
 		<!-- Spring Context Support -->
@@ -111,6 +112,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+		</dependency>
+
 		<!-- Logging with SLF4J & LogBack -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -132,7 +139,7 @@
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
-			<!--<scope>provided</scope>-->
+			<!--<scope>provided</scope> -->
 		</dependency>
 		<!-- Test Artifacts -->
 		<dependency>
@@ -148,7 +155,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<!-- Profiles -->
 	<profiles>
 		<profile>
