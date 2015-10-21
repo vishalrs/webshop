@@ -8,5 +8,6 @@
 	</parent>
 	<artifactId>webshop-core</artifactId>
 	<name>webshop-core</name>
+	<packaging>jar</packaging>
 	<description>Webshop core project</description>
 </project>

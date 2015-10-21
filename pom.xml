@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sogeti</groupId>
 	<artifactId>webshop</artifactId>
@@ -13,7 +12,6 @@
 		<module>webshop-web</module>
 		<module>webshop-admin</module>
 	</modules>
-
 	<properties>
 		<!-- Generic properties -->
 		<java.version>1.7</java.version>
@@ -27,43 +25,36 @@
 		<jsp.version>2.2</jsp.version>
 		<jstl.version>1.2</jstl.version>
 		<servlet.version>2.5</servlet.version>
-
 		<!-- Spring -->
 		<spring-framework.version>3.2.8.RELEASE</spring-framework.version>
 		<spring-data.version>1.3.4.RELEASE</spring-data.version>
 		<spring-security.version>3.2.4.RELEASE</spring-security.version>
-
 		<!-- Hibernate / JPA -->
 		<hibernate.version>4.2.1.Final</hibernate.version>
-
 		<!-- Logging -->
 		<slf4j.version>1.7.5</slf4j.version>
-
+		<!--Database-->
+		<mysql.version>5.1.36</mysql.version>
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-
+		<!--Runtime properties
+		<dbip></dbip><dbport></dbport><dbname></dbname><dbusername></dbusername><dbpassword></dbpassword>-->
 	</properties>
-
 	<dependencies>
-
 		<!-- Spring Context Support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
-
 		<!-- Spring ORM -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
-
-
 		<!-- Spring Data JPA -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -76,27 +67,22 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<!-- Spring Security -->
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
-
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -108,16 +94,17 @@
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
 		</dependency>
-
-
 		<!-- Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>1.4.178</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
 		<!-- Logging with SLF4J & LogBack -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -125,26 +112,22 @@
 			<version>${slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.6.4</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.4</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<!-- Test Artifacts -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -152,13 +135,33 @@
 			<version>${spring-framework.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
+	
+	<!-- Profiles -->
+	<profiles>
+		<profile>
+			<id>development</id>
+		</profile>
+		<profile>
+			<id>functional-test</id>
+		</profile>
+		<profile>
+			<id>load-test</id>
+			<properties>
+				<db.driverClass>com.mysql.jdbc.Driver</db.driverClass>
+				<db.connectionURL>jdbc:mysql://${dbip}:${dbport}/${dbname}</db.connectionURL>
+				<db.username>${dbusername}</db.username>
+				<db.password>${dbpassword}</db.password>
+			</properties>
+		</profile>
+		<profile>
+			<id>staging</id>
+		</profile>
+	</profiles>
 </project>

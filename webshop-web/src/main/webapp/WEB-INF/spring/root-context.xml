@@ -1,37 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:util="http://www.springframework.org/schema/util" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd   http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd   http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
-	<context:component-scan base-package="com.sogeti.webshop.services" />
+	<context:component-scan base-package="com.sogeti.webshop.services"/>
 	<jpa:repositories base-package="com.sogeti.webshop.repositories"/>
-	
-	<bean
-		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-
-	<!-- <jdbc:embedded-database id="dataSource" type="H2" /> -->
-	<jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/petshopDS"/>
-	
-	<bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.sogeti.webshop.model" />
-		
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+	<!-- <jdbc:embedded-database id="dataSource" type="H2" />-->
+	<!--<jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/petshopDS"/>-->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
+		<property name="driverClassName" value="${jdbc.driverClass}"/>
+		<property name="url" value="${jdbc.connectionURL}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	<bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.sogeti.webshop.model"/>
 		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
 		</property>
 		<property name="jpaProperties">
 			<props>
@@ -41,32 +26,24 @@
 			</props>
 		</property>
 	</bean>
-
-
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
 	</bean>
-
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	
- 	<context:property-placeholder location="classpath:app.properties" />
- 	
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="${email.smtp.host}"/>
-        <property name="port" value="${email.smtp.port}"/>
-        <property name="username" value="${email.smtp.username}"/>
-        <property name="password" value="${email.smtp.password}"/>
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-            </props>
-        </property>
-    </bean>
-    
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<context:property-placeholder location="classpath:app.properties"/>
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="${email.smtp.host}"/>
+		<property name="port" value="${email.smtp.port}"/>
+		<property name="username" value="${email.smtp.username}"/>
+		<property name="password" value="${email.smtp.password}"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
 	<import resource="security.xml"/>
-	
 </beans>
