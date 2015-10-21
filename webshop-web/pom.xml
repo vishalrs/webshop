@@ -71,7 +71,7 @@
 						</goals>
 						<configuration>
 							<target name="copy war files to tomcat">
-								<copy file="${project.build.directory}/${project.artifactId}-${project.version}.war" tofile="D:/${project.artifactId}.war"/>
+								<copy file="${project.build.directory}/${project.artifactId}-${project.version}.war" tofile="${deploy_location}/${project.artifactId}.war"/>
 							</target>
 						</configuration>
 					</execution>
