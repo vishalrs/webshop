@@ -13,3 +13,4 @@ webshop-core/.settings/
 webshop-web/.classpath
 webshop-web/.project
 webshop-web/.settings/
+webshop-web/test-output/*

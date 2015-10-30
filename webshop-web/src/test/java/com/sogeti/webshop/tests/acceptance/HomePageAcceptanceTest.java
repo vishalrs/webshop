@@ -16,7 +16,8 @@ public class HomePageAcceptanceTest {
   
   @Test
   public void testHomePageLoad() {
-     driver.get("http://localhost:9080/webshop-web");
+     String server_port = System.getProperty("server_port");
+     driver.get("http://"+server_port+"/webshop-web");
      List<WebElement> tags = driver.findElements(By.tagName("tr"));
      Assert.assertEquals(10, tags.size());
   }
