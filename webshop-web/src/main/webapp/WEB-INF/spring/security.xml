@@ -22,7 +22,7 @@
  
    <authentication-manager>
 	        <authentication-provider user-service-ref="securityServiceImpl">
-	        	<sec:password-encoder ref="passwordEncoder"/>
+	        	<!-- <sec:password-encoder ref="passwordEncoder"/> -->
 	        </authentication-provider>
 	</authentication-manager>
  
