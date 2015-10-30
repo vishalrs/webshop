@@ -25,7 +25,7 @@ public class HomePageAcceptanceTest {
   
   @BeforeTest
   public void beforeTest() {
-     System.setProperty("webdriver.chrome.driver", "D:/Downloads/chromedriver.exe");
+     System.setProperty("webdriver.chrome.driver", "/home/vagrant/driver/chromedriver");
      driver = new ChromeDriver();
   }
 
