@@ -16,9 +16,7 @@ public class HomePageAcceptanceTest {
   
   @Test
   public void testHomePageLoad() {
-     String server_port = System.getProperty("server_port");
-     String url = "http://"+server_port+"/webshop-web";
-     System.out.println(url);
+     String app_url = System.getProperty("APP_URL");
      driver.get(url);
      List<WebElement> tags = driver.findElements(By.tagName("tr"));
      Assert.assertEquals(10, tags.size());
@@ -27,7 +25,7 @@ public class HomePageAcceptanceTest {
   
   @BeforeTest
   public void beforeTest() {
-     System.setProperty("webdriver.chrome.driver", "/home/vagrant/driver/chromedriver");
+     System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
      driver = new ChromeDriver();
   }
 
