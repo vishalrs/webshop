@@ -17,7 +17,7 @@ public class HomePageAcceptanceTest {
   @Test
   public void testHomePageLoad() {
      String app_url = System.getProperty("APP_URL");
-     driver.get(url);
+     driver.get(app_url);
      List<WebElement> tags = driver.findElements(By.tagName("tr"));
      Assert.assertEquals(10, tags.size());
   }
