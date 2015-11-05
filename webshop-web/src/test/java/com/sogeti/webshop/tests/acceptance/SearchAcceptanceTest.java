@@ -17,8 +17,8 @@ public class SearchAcceptanceTest {
 
    @Test
    public void testSearchByMobileCategory() {
-      String server_port = System.getProperty("server_port");
-      driver.get("http://"+server_port+"/webshop-web");
+      String app_url = System.getProperty("APP_URL");
+      driver.get(app_url);
       driver.findElement(By.linkText("Mobiles")).click();
       List<WebElement> tags = driver.findElements(By.tagName("tr"));
       Assert.assertEquals(6, tags.size());
@@ -26,7 +26,7 @@ public class SearchAcceptanceTest {
 
    @BeforeTest
    public void beforeTest() {
-      System.setProperty("webdriver.chrome.driver", "/home/vagrant/driver/chromedriver");
+      System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
       driver = new ChromeDriver();
    }
 
