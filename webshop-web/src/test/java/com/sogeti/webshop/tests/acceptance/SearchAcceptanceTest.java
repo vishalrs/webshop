@@ -18,8 +18,7 @@ public class SearchAcceptanceTest {
    @Test
    public void testSearchByMobileCategory() {
       String app_url = System.getProperty("APP_URL");
-      System.out.println("=======>" + app_url);
-      driver.get("http://192.168.20.1:8080");
+      driver.get(app_url);
       driver.findElement(By.linkText("Mobiles")).click();
       List<WebElement> tags = driver.findElements(By.tagName("tr"));
       Assert.assertEquals(6, tags.size());
