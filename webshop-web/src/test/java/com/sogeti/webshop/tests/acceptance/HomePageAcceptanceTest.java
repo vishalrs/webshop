@@ -17,8 +17,7 @@ public class HomePageAcceptanceTest {
   @Test
   public void testHomePageLoad() {
      String app_url = System.getProperty("APP_URL");
-     System.out.println("=======>" + app_url);
-     driver.get("http://192.168.20.1:8080");
+     driver.get(app_url);
      List<WebElement> tags = driver.findElements(By.tagName("tr"));
      Assert.assertEquals(10, tags.size());
   }
