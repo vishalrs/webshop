@@ -26,7 +26,13 @@ public class HomePageAcceptanceTest {
   @BeforeTest
   public void beforeTest() {
      System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-     driver = new ChromeDriver();
+     try{
+        driver = new ChromeDriver();
+     }
+     catch(Exception e){
+       e.printStackTrace();
+     } 
+     
   }
 
   @AfterTest
